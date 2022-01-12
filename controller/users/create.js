@@ -12,5 +12,5 @@ module.exports = rescue(async (req, res, next) => {
   const token = await usersService.create({ displayName, email, password, image });
 
   if (token.err) return next(token.err);
-  return res.status(StatusCodes.CREATED).json(token);
+  return res.status(StatusCodes.CREATED).json({ token });
 });

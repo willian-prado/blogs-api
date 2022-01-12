@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const usersRouter = require('./controller/users/router');
 const errorHandler = require('./middlewares/errorHandler');
+const controllerLogin = require('./controller/login');
 
 const app = express();
 app.use(bodyParser.json());
@@ -15,4 +16,5 @@ app.get('/', (request, response) => {
 });
 
 app.use('/user', usersRouter);
+app.post('/login', controllerLogin.login);
 app.use(errorHandler);
