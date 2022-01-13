@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const usersRouter = require('./controller/users/router');
 const categoriesRouter = require('./controller/categories/router');
+const blogpostsRouter = require('./controller/blogpost/router');
 const errorHandler = require('./middlewares/errorHandler');
 const controllerLogin = require('./controller/login');
 
@@ -18,5 +19,6 @@ app.get('/', (request, response) => {
 
 app.use('/user', usersRouter);
 app.use('/categories', categoriesRouter);
+app.use('/post', blogpostsRouter);
 app.post('/login', controllerLogin.login);
 app.use(errorHandler);

@@ -3,11 +3,8 @@ module.exports = (sequelize, DataTypes) => {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     title: DataTypes.STRING,
     content: DataTypes.STRING,
-    createdAt: { field: 'published', type: DataTypes.STRING },
-    updatedAt: { field: 'updated', type: DataTypes.STRING },
   },
   {
-    timestamps: false,
     createdAt: 'published',
     updatedAt: 'updated',
   });
