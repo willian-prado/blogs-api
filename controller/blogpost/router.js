@@ -7,7 +7,9 @@ const getAll = require('./getAll');
 const getById = require('./getById');
 const update = require('./update');
 const remove = require('./remove');
+const getBySearchTerm = require('./getBySearchTerm');
 
+router.get('/search', verifyToken, getBySearchTerm);
 router.post('/', verifyToken, create);
 router.get('/', verifyToken, getAll);
 router.get('/:id', verifyToken, getById);
