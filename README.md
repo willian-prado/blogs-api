@@ -1,286 +1,59 @@
-### Termos e acordos
+## Projeto BlogsAPI
 
-Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e Conduta e do Manual da Pessoa Estudante da Trybe.
+> Décimo primeiro projeto do módulo de Back-end do curso de desenvolvimento web da Trybe.
 
----
+**Contexto**
 
-# Boas vindas ao repositório do API de Blogs!
+Ao longo do bloco desse projeto, conhecemos um pouco sobre os `ORMs` (Object–Relational Mapping), que permitem criar e alterar tabelas, fazer consultas, inserir e extrair dados de um banco de dados através de código JavaScript. Aqui usaremos o ORM `Sequelize` para construir uma API RESTful, ele suporta diferentes tipos de bancos de dados relacionais, incluindo MySQL, PostgreSQL, MariaDB e SQLServer.
 
-Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por Slack! #vqv 🚀
+**Objetivo do projeto**
 
-Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir deste repositório, utilizando uma branch específica e um Pull Request para colocar seus códigos.
+Desenvolver uma API com CRUD de posts de blog usando o `Sequelize`. Os endpoints devem seguir os princípios do REST e estarão conectados ao banco de dados. Inicialmente, deve ser criada uma tabela Users que registra usuários cadastrados na aplicação.
+Após isso, também deve ser criada uma tabela Categories com as categorias disponíveis para os BlogPosts e por fim a tabela de BlogPosts, que guardará todas as informações dos posts realizados na plataforma.
+Para fazer um post é necessário usuário e login, portanto será trabalhada a **relação entre** `Users` e `BlogPosts`. Também será necessária a utlização de categorias para seus posts, assim trabalhando a relação de `BlogPosts` para `Categories` e de `Categories` para `BlogPosts`.
 
----
+**Principais habilidades desenvolvidas nesse trabalho**
 
-# Sumário
+ - Criar e associar tabelas usando `models` e `migrations` do `Sequelize`;
+ - Construir endpoints para consumir os models que criar;
+ - Fazer um `CRUD` usando o ORM `Sequelize`;
+ - Criar `seeders` para popular um banco de dados com o `Sequelize`.
 
-- [Habilidades](#habilidades)
-- [Entregáveis](#entregáveis)
-  - [O que deverá ser desenvolvido](#o-que-deverá-ser-desenvolvido)
-  - [Desenvolvimento](#desenvolvimento)
-  - [Data de entrega](#data-de-entrega)
-- [Instruções para entregar seu projeto](#instruções-para-entregar-seu-projeto)
-  - [Antes de começar a desenvolver](#antes-de-começar-a-desenvolver)
-  - [Durante o desenvolvimento](#durante-o-desenvolvimento)
-  - [Execução de testes unitários](#execução-de-testes-unitários)
-- [Como desenvolver](#como-desenvolver)
-  - [Linter](#linter)
-- [Requisitos do projeto](#requisitos-do-projeto)
-  - [Antes de começar](#antes-de-começar)
-  - [Observações importantes](#-observações-importantes)
-    - [Dicas](#dicas)
-  - [Lista de Requisitos](#lista-de-requisitos)
-    - [1 - Sua aplicação deve ter o endpoint POST `/user`](#1---sua-aplicação-deve-ter-o-endpoint-post-user)
-    - [2 - Sua aplicação deve ter o endpoint POST `/login`](#2---sua-aplicação-deve-ter-o-endpoint-post-login)
-    - [3 - Sua aplicação deve ter o endpoint GET `/user`](#3---sua-aplicação-deve-ter-o-endpoint-get-user)
-    - [4 - Sua aplicação deve ter o endpoint GET `/user/:id`](#4---sua-aplicação-deve-ter-o-endpoint-get-userid)
-    - [5 - Sua aplicação deve ter o endpoint POST `/categories`](#5---sua-aplicação-deve-ter-o-endpoint-post-categories)
-    - [6 - Sua aplicação deve ter o endpoint GET `/categories`](#6---sua-aplicação-deve-ter-o-endpoint-get-categories)
-    - [7 - Sua aplicação deve ter o endpoint POST `/post`](#7---sua-aplicação-deve-ter-o-endpoint-post-post)
-    - [8 - Sua aplicação deve ter o endpoint GET `/post`](#8---sua-aplicação-deve-ter-o-endpoint-get-post)
-    - [9 - Sua aplicação deve ter o endpoint GET `post/:id`](#9---sua-aplicação-deve-ter-o-endpoint-get-postid)
-    - [10 - Sua aplicação deve ter o endpoint PUT `/post/:id`](#10---sua-aplicação-deve-ter-o-endpoint-put-postid)
-    - [Requisitos Bônus](#requisitos-bônus)
-    - [11 - Sua aplicação deve ter o endpoint DELETE `post/:id`](#11---sua-aplicação-deve-ter-o-endpoint-delete-postid)
-    - [12 - Sua aplicação deve ter o endpoint DELETE `/user/me`](#12---sua-aplicação-deve-ter-o-endpoint-delete-userme)
-    - [13 - Sua aplicação deve ter o endpoint GET `post/search?q=:searchTerm`](#13---sua-aplicação-deve-ter-o-endpoint-get-postsearchqsearchterm)
-- [Avisos Finais](#avisos-finais)
-
-# Habilidades 
-
-Nesse projeto, você vai construir um back-end usando `ORM` com o pacote `sequelize` do `npm`, e será capaz de:
- - Criar e associar tabelas usando `models` do `sequelize`
- - Construir endpoints para consumir os models que criar 
- - Fazer um `CRUD` com o `ORM`
-
-# Entregáveis
-
-Para entregar o seu projeto você deverá criar um Pull Request neste repositório.
-
-Lembre-se que você pode consultar nosso conteúdo sobre [Git & GitHub](https://course.betrybe.com/intro/git/) sempre que precisar!
+**Tecnologias utilizadas**
+- <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" title="JavaScript" align="center" height="30"/> - JavaScript</a>
+- <a href="https://nodejs.org"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" title="Node.js" align="center" height="35"/> - Node.js</a>
+- <a href="https://expressjs.com"><img src="https://images.tute.io/tute/topic/express-js.png" title= "Express" align="center" height="35"/> - Express</a>
+- <a href="https://www.mysql.com/"><img src="https://icon-library.com/images/mysql-icon/mysql-icon-3.jpg" title="MySQL" align="center" height="30"/> - MySQL</a>
+- <a href="https://jwt.io/introduction"><img src="https://vegibit.com/wp-content/uploads/2018/07/JSON-Web-Token-Authentication-With-Node.png" title= "JWT" align="center" height="30"/> - JWT</a>
+- <a href="https://sequelize.org/v6/"><img src="https://seeklogo.com/images/S/sequelize-logo-9A5075DB9F-seeklogo.com.png" title= "Sequelize" align="center" height="30"/> - Sequelize</a>
 
 ---
 
-## O que deverá ser desenvolvido
+### Endpoints disponíveis na aplicação:
 
-Você vai arquiteturar e desenvolver uma API de um CRUD posts de blog (com o Sequelize). Começando pela API, você vai desenvolver alguns endpoints (seguindo os princípios do REST) que estarão conectados ao seu banco de dados.
-
-Primeiro, você irá criar uma tabela para os usuários que desejam se cadastrar na aplicação. Após isso, criará também uma tabela de Categorias para seus Posts e por fim a tabela de Posts será seu foco, guardando todas as informações dos posts realizados na plataforma. Essa é apenas uma recomendação!
-
----
-
-## Desenvolvimento
-
-Você deve desenvolver uma aplicação em `Node.js` usando o pacote `sequelize` para fazer um `CRUD` de posts.
-
-Para fazer um post é necessário usuário e login, portanto será trabalhada a **relação entre** `user` e `post`. Também será necessário a utlização de categorias para seus posts, assim trabalhando a relação de `posts` para `categorias` e de `categorias` para `posts`.
- 
-### Data de Entrega
-
-  - Projeto individual.
-
-  - Serão `3` dias de projeto.
-
-  - Data de entrega para avaliação final do projeto: `17/01/2022 - 14:00h`.
+* [`POST`] Cadastrar um usuário: `/user`;
+* [`POST`] Login de usuários: `/login`;
+* [`GET`] Listar todos os usuários: `/user`;
+* [`GET`] Listar usuário pelo seu id:`/user/:id`;
+* [`POST`] Criar nova categoria: `/categories`;
+* [`GET`] Listar todos as categorias: `/categories`;
+* [`POST`] Criar novo blogpost: `/post`;
+* [`GET`] Listar todos os blogposts: `/post`;
+* [`GET`] Listar blogpost pelo seu id: `/post/:id`;
+* [`PUT`] Atualizar um blogpost pelo seu id: `/post/:id`;
+* [`DELETE`] Remover um blogpost pelo seu id: `/post/:id`;
+* [`DELETE`] Remover um usuário: `/user/me`;
+* [`GET`] Filtra um blogpost por termo presente no título ou conteúdo: `post/search?q=:searchTerm`;
 
 ---
 
-# Instruções para entregar seu projeto:
+### Lista de requisitos propostos pela Trybe:
 
+#### Observações:
 
-### ANTES DE COMEÇAR A DESENVOLVER:
+#### Use o ORM para criar e configurar as seguintes tabelas e seus relacionamentos:
 
-1. Clone o repositório
-  * `git clone https://github.com/tryber/sd-012-project-blogs-api.git`.
-  * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-012-project-blogs-api`
-
-2. Instale as dependências [**Caso existam**]
-  * `npm install`
-
-3. Crie uma branch a partir da branch `master`
-  * Verifique que você está na branch `master`
-    * Exemplo: `git branch`
-  * Se não estiver, mude para a branch `master`
-    * Exemplo: `git checkout master`
-  * Agora crie uma branch à qual você vai submeter os `commits` do seu projeto
-    * Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
-    * Exemplo: `git checkout -b joaozinho-sd-012-project-blogs-api`
-
-4. Adicione as mudanças ao _stage_ do Git e faça um `commit`
-  * Verifique que as mudanças ainda não estão no _stage_
-    * Exemplo: `git status` (deve aparecer listada a pasta _joaozinho_ em vermelho)
-  * Adicione o novo arquivo ao _stage_ do Git
-      * Exemplo:
-        * `git add .` (adicionando todas as mudanças - _que estavam em vermelho_ - ao stage do Git)
-        * `git status` (deve aparecer listado o arquivo _joaozinho/README.md_ em verde)
-  * Faça o `commit` inicial
-      * Exemplo:
-        * `git commit -m 'iniciando o projeto x'` (fazendo o primeiro commit)
-        * `git status` (deve aparecer uma mensagem tipo _nothing to commit_ )
-
-5. Adicione a sua branch com o novo `commit` ao repositório remoto
-  * Usando o exemplo anterior: `git push -u origin joaozinho-sd-012-project-blogs-api`
-
-6. Crie um novo `Pull Request` _(PR)_
-  * Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-012-project-blogs-api/pulls)
-  * Clique no botão verde _"New pull request"_
-  * Clique na caixa de seleção _"Compare"_ e escolha a sua branch **com atenção**
-  * Clique no botão verde _"Create pull request"_
-  * Adicione uma descrição para o _Pull Request_ e clique no botão verde _"Create pull request"_
-  * **Não se preocupe em preencher mais nada por enquanto!**
-  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-012-project-blogs-api/pulls) e confira que o seu _Pull Request_ está criado
-
----
-
-### DURANTE O DESENVOLVIMENTO
-
-* Faça `commits` das alterações que você fizer no código regularmente
-
-* Lembre-se de sempre após um (ou alguns) `commits` atualizar o repositório remoto
-
-* Os comandos que você utilizará com mais frequência são:
-  1. `git status` _(para verificar o que está em vermelho - fora do stage - e o que está em verde - no stage)_
-  2. `git add` _(para adicionar arquivos ao stage do Git)_
-  3. `git commit` _(para criar um commit com os arquivos que estão no stage do Git)_
-  4. `git push -u nome-da-branch` _(para enviar o commit para o repositório remoto na primeira vez que fizer o `push` de uma nova branch)_
-  5. `git push` _(para enviar o commit para o repositório remoto após o passo anterior)_
-
----
-
-### Execução de testes unitários
-
-Vamos usar o Jest para executar os testes, use o comando a seguir para executar todos os testes: 
-
-```sh
-npm test
-```
-
-Caso queria executar só um arquivo de test use o seguinte comando, considerado que quer testar o arquivo `tests/req07-createPost.test.js`:
-
-```sh
-npm test tests/req07-createPost.test.js
-```
-ou
-```
-npm test req07
-```
-
-
----
-
-# Como desenvolver
-
-## Linter
-
-Para garantir a qualidade do código, usaremos o [ESLint](https://eslint.org/) para fazer a sua análise estática.
-
-Este projeto já vem com as dependências relacionadas ao _linter_ configuradas nos arquivos `package.json` nos seguintes caminhos:
-
-- `sd-012-project-blogs-api/package.json`
-
-Para poder rodar os `ESLint` em um projeto basta executar o comando `npm install` dentro do projeto e depois `npm run lint`. Se a análise do `ESLint` encontrar problemas no seu código, tais problemas serão mostrados no seu terminal. Se não houver problema no seu código, nada será impresso no seu terminal.
-
-Você também pode instalar o plugin do `ESLint` no `VSCode`, bastar ir em extensions e baixar o [plugin `ESLint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
-
-⚠ PULL REQUESTS COM ISSUES DE LINTER NÃO SERÃO AVALIADAS. ATENTE-SE PARA RESOLVÊ-LAS ANTES DE FINALIZAR O DESENVOLVIMENTO! ⚠
-
----
-# Requisitos do projeto:
-
-## Antes de começar:
-
-### ⚠️ Leia-os atentamente e siga à risca o que for pedido. ⚠️
-
-### 👀 Observações importantes:
-
-Em cada requisito você encontrará uma imagem de um protótipo de como sua aplicação deve ficar. Estilo da página não será avaliado.
-
-O não cumprimento de um requisito, total ou parcialmente, impactará em sua avaliação.
-
-Há um arquivo `index.js` no repositório. Não remova, nele, o seguinte trecho de código:
-
-```javascript
-app.get('/', (request, response) => {
-  response.send();
-});
-```
-
-**Você irá precisar configurar as variáveis globais do MySQL.** Você pode usar esse [Conteúdo de variáveis de ambiente com NodeJS](https://blog.rocketseat.com.br/variaveis-ambiente-nodejs/) como referência.
-
-**Faça essas configurações também para as variáveis de ambiente usadas nesses arquivo:**
-
-`sd-012-project-blogs-api/config/config.js`
-
-```
-module.exports = {
-  development: {
-    username: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: 'blogs_api',
-    host: process.env.HOSTNAME,
-    dialect: 'mysql',
-  },
-  test: {
-    username: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: 'blogs_api',
-    host: process.env.HOSTNAME,
-    dialect: 'mysql',
-  },
-  production: {
-    username: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: 'blogs_api',
-    host: process.env.HOSTNAME,
-    dialect: 'mysql',
-  },
-};
-```
-
-**(Neste arquivo e obrigatório deixar o nome do database como `"database": 'blogs_api'`)**
-
-**É essencial usar essas 3 variávies no arquivo acima:**
-
-#### Variáveis:
-
-`host: process.env.HOSTNAME`
-
-`user: process.env.MYSQL_USER`
-
-`password: process.env.MYSQL_PASSWORD`
-
-**Com elas que iremos conseguir conectar ao banco do avaliador automático**
-
-#### Variável JWT (opcional):
-
-`JWT_SECRET`
-
-**Também poderá ser utilizada esta variável de ambiente para o SECRET do JWT**
-
-### Dicas
-
-#### Status HTTP
-
-Tenha em mente que todas as "respostas" devem respeitar os [status do protocolo HTTP](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status) com base no que o REST prega.
-
-Alguns exemplos:
-
-  - Requisições que precisam de token mas não o receberam devem retornar um código de `status 401`;
-
-  - Requisições que não seguem o formato pedido pelo servidor devem retornar um código de `status 400`;
-
-  - Um problema inesperado no servidor deve retornar um código de `status 500`;
-
-  - Um acesso ao criar um recurso, no nosso caso usuário ou post, deve retornar um código de `status 201`.
-
----
-
-#### Os seguintes pontos serão avaliados:
-
-- O seu projeto deverá usar um `ORM` para criar e atualizar o seu banco. A clonagem do projeto seguida de um comando de migrate deve deixá-lo em sua forma esperada.
-
-- Deve conter uma tabela chamada **Users**, contendo dados com a seguinte estrutura::
+- Deve conter uma tabela **Users**, com a seguinte estrutura:
 
   ```json
   {
@@ -291,7 +64,7 @@ Alguns exemplos:
     "image": "http://4.bp.blogspot.com/_YA50adQ-7vQ/S1gfR_6ufpI/AAAAAAAAAAk/1ErJGgRWZDg/S45/brett.png"
   }
   ```
-- Deve conter uma tabela chamada **Categories**, contendo dados com a seguinte estrutura::
+- Deve conter uma tabela chamada **Categories**, com a seguinte estrutura:
 
   ```json
   {
@@ -300,7 +73,7 @@ Alguns exemplos:
   }
   ```
 
-- Deve conter uma tabela chamada **PostsCategories**, contendo dados com a seguinte estrutura:
+- Deve conter uma tabela chamada **PostsCategories**, com a seguinte estrutura:
 
   ```json
   {
@@ -309,7 +82,7 @@ Alguns exemplos:
   }
   ```
 
-- Deve conter uma tabela chamada **BlogPosts**, contendo dados com a seguinte estrutura::
+- Deve conter uma tabela chamada **BlogPosts**, com a seguinte estrutura:
 
   ```json
   {
@@ -324,21 +97,10 @@ Alguns exemplos:
   
   **Os dados acima são fictícios, e estão aqui apenas como exemplo**  
 
-  **OBS: Os testes irão rodar atráves do seu migrate usando os seguintes comandos:**
+ 
+#### Obrigatórios
 
-  "drop": "npx sequelize-cli db:drop $" -- Dropa o banco
-
-  "prestart": "npx sequelize-cli db:create && npx sequelize-cli db:migrate $" -- Cria o banco e gera as tabelas
-
-  "seed": "npx sequelize-cli db:seed:all $", -- Insere dados na tabela
-
-  **Então preste bastante atenção se estiver errado o avaliador não irá funcionar**
-
-  **Haverá um arquivo na pasta `/seeders` dentro dela irá conter as querys para inserir no banco `não remova ela o avaliador irá usar ela`.**
-
-## Lista de Requisitos:
-
-### 1 - Sua aplicação deve ter o endpoint POST `/user`
+#### 1 - Sua aplicação deve ter o endpoint POST `/user`
 
 #### Os seguintes pontos serão avaliados:
 
@@ -377,7 +139,7 @@ Alguns exemplos:
   ```
   _O token anterior é fictício_
 
-### Além disso, as seguintes verificações serão feitas:
+#### Além disso, as seguintes verificações serão feitas:
 
 **[Será validado que é possível cadastrar um usuário com sucesso]**
 
@@ -433,7 +195,7 @@ Se o usuário cadastrar o campo "email" com um email que já existe, o resultado
 
 ![Usuário Existente](./public/usuariojaexistente.png)
 
-### 2 - Sua aplicação deve ter o endpoint POST `/login`
+#### 2 - Sua aplicação deve ter o endpoint POST `/login`
 
 #### Os seguintes pontos serão avaliados:
 
@@ -457,7 +219,7 @@ Se o usuário cadastrar o campo "email" com um email que já existe, o resultado
   ```
   _O token anterior é fictício_
 
-### Além disso, as seguintes verificações serão feitas:
+#### Além disso, as seguintes verificações serão feitas:
 
 **[Será validado que é possível fazer login com sucesso]**
 
@@ -499,7 +261,7 @@ Se o login for com usuário inexistente o resultado retornado deverá ser confor
 
 ![Usuário não existe](./public/usuarionaoexiste.png)
 
-### 3 - Sua aplicação deve ter o endpoint GET `/user`
+#### 3 - Sua aplicação deve ter o endpoint GET `/user`
 
 #### Os seguintes pontos serão avaliados:
 
@@ -518,7 +280,7 @@ Se o login for com usuário inexistente o resultado retornado deverá ser confor
 
 - A requisição deve ter token de autenticação nos headers e, caso contrário, retorne um código de `status 401`.
 
-### Além disso, as seguintes verificações serão feitas:
+#### Além disso, as seguintes verificações serão feitas:
 
 **[Será validado que é possível listar todos os usuários]**
 
@@ -538,7 +300,7 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 
 ![Token inválido](./public/tokeninvalido.png)
 
-### 4 - Sua aplicação deve ter o endpoint GET `/user/:id`
+#### 4 - Sua aplicação deve ter o endpoint GET `/user/:id`
 
 #### Os seguintes pontos serão avaliados:
 
@@ -555,7 +317,7 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 
 - A requisição deve ter token de autenticação nos headers e, caso contrário, retorne um código de `status 401`.
 
-### Além disso, as seguintes verificações serão feitas:
+#### Além disso, as seguintes verificações serão feitas:
 
 **[Será validado que é possível listar um usuario específico com sucesso]**
 
@@ -581,7 +343,7 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 
 ![Listar um usuário com token inválido](./public/tokeninvalidoumusuario.png)
 
-### 5 - Sua aplicação deve ter o endpoint POST `/categories`
+#### 5 - Sua aplicação deve ter o endpoint POST `/categories`
 
 #### Os seguintes pontos serão avaliados:
 
@@ -597,7 +359,7 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 
 - A requisição deve ter o token de autenticação nos headers e, caso contrário, retorne um código de `status 401`.
 
-### Além disso, as seguintes verificações serão feitas:
+#### Além disso, as seguintes verificações serão feitas:
 
 **[Será validado que é possível cadastrar uma categoria com sucesso]**
 
@@ -622,7 +384,7 @@ Se o token for inexistente o resultado retornado deverá ser conforme exibido ab
 
 ![Cadastrar uma categoria sem token](./public/cadastrarcategoriasemtoken.png)
 
-### 6 - Sua aplicação deve ter o endpoint GET `/categories`
+#### 6 - Sua aplicação deve ter o endpoint GET `/categories`
 
 #### Os seguintes pontos serão avaliados:
 
@@ -662,7 +424,7 @@ Se o token for inexistente o resultado retornado deverá ser conforme exibido ab
 ![Buscar uma categoria sem token](./public/buscarcategoriasemtoken.png)
 
 
-### 7 - Sua aplicação deve ter o endpoint POST `/post`
+#### 7 - Sua aplicação deve ter o endpoint POST `/post`
 
 #### Os seguintes pontos serão avaliados:
 
@@ -680,7 +442,7 @@ Se o token for inexistente o resultado retornado deverá ser conforme exibido ab
 
 - A requisição deve ter o token de autenticação nos headers e, caso contrário, retorne um código de `status 401`.
 
-### Além disso, as seguintes verificações serão feitas:
+#### Além disso, as seguintes verificações serão feitas:
 
 **[Será validado que é possível cadastrar um blogpost com sucesso]**
 
@@ -725,7 +487,7 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 
 ![blogpost com token inválido](./public/criarposttokeninvalido.png)
 
-### 8 - Sua aplicação deve ter o endpoint GET `/post`
+#### 8 - Sua aplicação deve ter o endpoint GET `/post`
 
 #### Os seguintes pontos serão avaliados:
 
@@ -756,7 +518,7 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 ]
 ```
 
-### Além disso, as seguintes verificações serão feitas:
+#### Além disso, as seguintes verificações serão feitas:
 
 **[Será validado que é possível listar blogpost com sucesso]**
 
@@ -776,7 +538,7 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 
 ![blogpost com token inválido](./public/listarposttokeninvalido.png)
 
-### 9 - Sua aplicação deve ter o endpoint GET `post/:id`
+#### 9 - Sua aplicação deve ter o endpoint GET `post/:id`
 
 #### Os seguintes pontos serão avaliados:
 
@@ -805,7 +567,7 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 }
 ```
 
-### Além disso, as seguintes verificações serão feitas:
+#### Além disso, as seguintes verificações serão feitas:
 
 **[Será validado que é possível listar um blogpost com sucesso]**
 
@@ -833,7 +595,7 @@ Se o id do post for inválido o resultado retornado deverá ser conforme exibido
 
 
 
-### 10 - Sua aplicação deve ter o endpoint PUT `/post/:id`
+#### 10 - Sua aplicação deve ter o endpoint PUT `/post/:id`
 
 #### Os seguintes pontos serão avaliados:
 
@@ -856,7 +618,7 @@ Se o id do post for inválido o resultado retornado deverá ser conforme exibido
 
 - Caso o post não contenha o `title` e/ou o `content` a API deve retornar um erro de `status 400`.
 
-### Além disso, as seguintes verificações serão feitas:
+#### Além disso, as seguintes verificações serão feitas:
 
 **[Será validado que é possível editar um blogpost com sucesso]**
 
@@ -901,9 +663,9 @@ Se não conter o campo `content` o resultado retornado deverá ser conforme exib
 
 ![blogpost com token inválido](./public/editarsemcontent.png)
 
-## Requisitos Bônus
+#### Bônus
 
-### 11 - Sua aplicação deve ter o endpoint DELETE `post/:id`
+#### 11 - Sua aplicação deve ter o endpoint DELETE `post/:id`
 
 #### Os seguintes pontos serão avaliados:
 
@@ -915,7 +677,7 @@ Se não conter o campo `content` o resultado retornado deverá ser conforme exib
 
 - Caso o post referido não exista, deve-se retornar um código de `status 404`.
 
-### Além disso, as seguintes verificações serão feitas:
+#### Além disso, as seguintes verificações serão feitas:
 
 **[Será validado que é possível deletar um blogpost com sucesso]**
 
@@ -947,13 +709,13 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 
 ![blogpost com token inválido](./public/deletarpostcomtokeninvalido.png)
 
-### 12 - Sua aplicação deve ter o endpoint DELETE `/user/me`
+#### 12 - Sua aplicação deve ter o endpoint DELETE `/user/me`
 
 #### Os seguintes pontos serão avaliados:
 
 - Utilizando o token de autenticação nos headers, o usuário correspondente deve ser apagado.
 
-### Além disso, as seguintes verificações serão feitas:
+#### Além disso, as seguintes verificações serão feitas:
 
 **[Será validado que é possível excluir meu usuário com sucesso]**
 
@@ -973,7 +735,7 @@ Se não conter o token o resultado retornado deverá ser conforme exibido abaixo
 
 ![Deletar sem token](./public/deletarsemtoken.png)
 
-### 13 - Sua aplicação deve ter o endpoint GET `post/search?q=:searchTerm`
+#### 13 - Sua aplicação deve ter o endpoint GET `post/search?q=:searchTerm`
 
 #### Os seguintes pontos serão avaliados:
 
@@ -1006,7 +768,7 @@ Se não conter o token o resultado retornado deverá ser conforme exibido abaixo
 
 - Caso nenhum **BlogPost** satisfaça a busca, retorne um array vazio.
 
-### Além disso, as seguintes verificações serão feitas:
+#### Além disso, as seguintes verificações serão feitas:
 
 **[Será validado que é possível buscar um blogpost pelo `title`]**
 
@@ -1044,35 +806,3 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 
 ![blogpost com token inválido](./public/buscarpostcomtokeninvalido.png)
 
---- 
-
-## Depois de terminar o desenvolvimento
-
-Para **"entregar"** seu projeto, siga os passos a seguir:
-
-* Vá até a página **DO SEU** _Pull Request_, adicione a label de _"code-review"_ e marque seus colegas
-  * No menu à direita, clique no _link_ **"Labels"** e escolha a _label_ **code-review**
-  * No menu à direita, clique no _link_ **"Assignees"** e escolha **o seu usuário**
-  * No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-012`
-
-Se ainda houver alguma dúvida sobre como entregar seu projeto, [aqui tem um video explicativo](https://vimeo.com/362189205).
-
-⚠ Lembre-se que garantir que todas as _issues_ comentadas pelo **Lint** estão resolvidas! ⚠
-
----
-
-### Revisando um pull request
-
-À medida que você e as outras pessoas que estudam na Trybe forem entregando os projetos, vocês receberão um alerta via Slack para também fazer a revisão dos Pull Requests dos seus colegas. Fiquem atentos às mensagens do "Pull Reminders" no Slack!
-
-Use o material que você já viu sobre [Code Review](https://app.betrybe.com/course/real-life-engineer/code-review) para te ajudar a revisar os projetos que chegaram para você.
-
-# Avisos Finais
-
-Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. Leva menos de 3 minutos!
-
-Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://be-trybe.typeform.com/to/ZTeR4IbH#cohort_name=Turma%2012)
-
-O avaliador automático não necessariamente avalia seu projeto na ordem em que os requisitos aparecem no readme. Isso acontece para deixar o processo de avaliação mais rápido. Então, não se assuste se isso acontecer, ok?
-
----
