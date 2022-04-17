@@ -4,7 +4,7 @@
 
 **Contexto**
 
-Ao longo do bloco desse projeto, conhecemos um pouco sobre os `ORMs` (Object–Relational Mapping), que permitem criar e alterar tabelas, fazer consultas, inserir e extrair dados de um banco de dados através de código JavaScript. Aqui usaremos o ORM `Sequelize` para construir uma API RESTful, ele suporta diferentes tipos de bancos de dados relacionais, incluindo MySQL, PostgreSQL, MariaDB e SQLServer.
+Ao longo do bloco desse projeto, conhecemos um pouco sobre os `ORMs` (Object–Relational Mapping), que permitem criar e alterar tabelas, fazer consultas, inserir e extrair dados de um banco de dados através de código JavaScript. Aqui usamos o ORM `Sequelize` para construir uma API RESTful, ele suporta diferentes tipos de bancos de dados relacionais, incluindo MySQL, PostgreSQL, MariaDB e SQLServer.
 
 **Objetivo do projeto**
 
