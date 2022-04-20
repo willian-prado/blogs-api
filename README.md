@@ -1,6 +1,6 @@
 ## Projeto BlogsAPI
 
-> Décimo primeiro projeto do módulo de Back-end do curso de desenvolvimento web da Trybe.
+> Décimo primeiro projeto do módulo de Back-end do curso de desenvolvimento web da [Trybe](https://www.betrybe.com/)
 
 **Contexto**
 
@@ -806,3 +806,6 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 
 ![blogpost com token inválido](./public/buscarpostcomtokeninvalido.png)
 
+---
+
+[Ir para a lista de projetos](https://github.com/willian-prado/trybe-records)
